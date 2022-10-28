@@ -71,6 +71,12 @@
         "nombre": "Café Capuchino",
         "precio": 40,
         "categoria": 2
+      },
+      {
+        "id": 13,
+        "nombre": "Pozole",
+        "precio": 80,
+        "categoria": 1
       }
     ]
   }

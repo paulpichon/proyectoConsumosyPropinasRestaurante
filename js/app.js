@@ -92,7 +92,37 @@ function obtenerPlatillos() {
     fetch( url )
     //se da por implicito el return respuesta.json()
     .then( respuesta => respuesta.json() )
-        .then( resultado => console.log( resultado ) )
+        //llamos la funcion mostrarPlatillos para poder mostrar lso platos desde la API
+        .then( resultado => mostrarPlatillos( resultado ) )
         //error
         .catch( error => console.log( error ) )
+}
+//funcion para mostrar los platillos desde la API
+function mostrarPlatillos( platillos ) {
+    ///variable que representa donde se mostraran los platillos
+    const contenido = document.querySelector('#platillos .contenido');
+
+    //iterar con foreach() sobre cada platillo
+    platillos.forEach( platillo => {
+        //destructuring
+        const { id, nombre, precio, categoria } = platillo;
+        //construi el html
+        const row = document.createElement('DIV');
+        //estilos
+        row.classList.add('row');
+
+        //div nombre platillo
+        const nombrePlatillo = document.createElement('DIV');
+        //estilos
+        nombrePlatillo.classList.add('col-md-4');
+        //texcontent
+        nombrePlatillo.textContent = nombre;
+
+        //agregar el nombre al row
+        row.appendChild( nombrePlatillo );
+        //agregar a contenido el row
+        contenido.appendChild( row );
+
+    });
+
 }
