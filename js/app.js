@@ -66,4 +66,19 @@ function guardarCliente() {
     const modalBootstrap = bootstrap.Modal.getInstance( modalFormulario );
     //y escondemos el modal
     modalBootstrap.hide();
+
+
+    //llamar funcion para mostrar secciones
+    mostrarSecciones();
+}
+//funcion para mostrar las secciones coultas
+function mostrarSecciones() {
+    //seleccionamos la clase d-none para seleccionar las secciones ocultas
+    //al haber mas de 2 elementos con esa clase usamos querySelectorAll
+    const seccionesOcultas = document.querySelectorAll('.d-none');
+    //iterarcon foreach
+    //y removemos las clases con este codigo seccion.classList.remove('d-none')
+    seccionesOcultas.forEach( seccion => seccion.classList.remove('d-none'));
+
+
 }
