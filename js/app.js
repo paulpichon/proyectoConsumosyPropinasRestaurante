@@ -6,6 +6,13 @@ let cliente = {
     pedido: []
 }
 
+//crear una variable objeto de categorias para definir el nombre de la categoria
+const categorias = {
+    1: 'Comida',
+    2: 'Bebidas',
+    3: 'Postres'
+}
+
 //boton para crear una orden de cliente
 const btnGuardarCliente = document.querySelector('#guardar-cliente');
 //añadir listener a btnGuardarCliente
@@ -109,7 +116,7 @@ function mostrarPlatillos( platillos ) {
         //construi el html
         const row = document.createElement('DIV');
         //estilos
-        row.classList.add('row');
+        row.classList.add('row', 'py-3', 'border-top');
 
         //div nombre platillo
         const nombrePlatillo = document.createElement('DIV');
@@ -118,10 +125,36 @@ function mostrarPlatillos( platillos ) {
         //texcontent
         nombrePlatillo.textContent = nombre;
 
+        //precio del platillo
+        const precioPlatillo = document.createElement('DIV');
+        //estilos
+        precioPlatillo.classList.add('col-md-3', 'fw-bold');
+        //textcontent
+        precioPlatillo.textContent = `$${ precio }`;
+
+        //categoria de los platillos
+        const categoriaPlatillo = document.createElement('DIV');
+        //estilos
+        categoriaPlatillo.classList.add('col-md-3');
+        //textcontent
+        //con la ayuda del objeto creado mas arriba entre corchetes ponemos la categoria que nos trae la API
+        //es similar a poner lo siguiente
+        //categorias[1] = Comida, categorias[2] = Bebidas, categorias[3] = Postres
+        categoriaPlatillo.textContent = categorias[categoria];
+
+
+
         //agregar el nombre al row
         row.appendChild( nombrePlatillo );
-        //agregar a contenido el row
+        //agregar el precio al row
+        row.appendChild( precioPlatillo );
+        //agreagr al row la categori
+        row.appendChild( categoriaPlatillo );
+
+
+        //renderizar en el html
         contenido.appendChild( row );
+
 
     });
 
