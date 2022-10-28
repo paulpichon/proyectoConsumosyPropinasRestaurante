@@ -26,9 +26,31 @@ function guardarCliente() {
 
     //verificar
     if ( camposVacios ) {
-        console.log("si hay campos vacios");
-    }else {
-        console.log("los campos estan llenos");
+        //verificar que no haya alerta previa
+        const alertas = document.querySelector('.invalid-feedback');
+        //si no hay alertas previas muestra la alerta
+        if ( !alertas ) {
+            //crear la alerta 
+            const alerta = document.createElement('DIV');
+            //estilos
+            alerta.classList.add('invalid-feedback', 'd-block', 'text-center');
+            //textcontent
+            alerta.textContent = 'TODOS LOS CAMPOS SON OBLIGATORIOS';
+            //renderizar
+            document.querySelector('.modal-body form').appendChild( alerta );
+
+            //quitar la alerta despues de 5 s
+            setTimeout(() => {
+                //quitar alerta
+                alerta.remove();
+            }, 5000);
+
+            //return para no ejecutar mas codigo
+            return;
+        }
+
     }
+
+    //
     
 }
