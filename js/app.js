@@ -3,7 +3,7 @@
 let cliente = {
     mesa: '',
     hora: '',
-    pedido: ''
+    pedido: []
 }
 
 //boton para crear una orden de cliente
@@ -51,6 +51,19 @@ function guardarCliente() {
 
     }
 
-    //
+    //ASIGANR DATOS DEL FORMULARIO A CLIENTE
+    //cliente = { mesa, hora, ...cliente };//si lo dejamos asi pasa esto= mesa: '', hora: '', pedido: Array(0)}
+    //por lo tanto debemos poner primero el spread operator dentro del objeto
+    //para que tome una copia de ese arreglo y despues reescriba los valores de mesa y hora
+    cliente = { ...cliente, mesa, hora }
+    console.log( cliente);
     
+    //ocultar modal
+    //modal formulario
+    const modalFormulario = document.querySelector('#formulario');
+    //modal bootstrap
+    //obtenemos una instancia de modalFormulario
+    const modalBootstrap = bootstrap.Modal.getInstance( modalFormulario );
+    //y escondemos el modal
+    modalBootstrap.hide();
 }
