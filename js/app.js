@@ -56,7 +56,7 @@ function guardarCliente() {
     //por lo tanto debemos poner primero el spread operator dentro del objeto
     //para que tome una copia de ese arreglo y despues reescriba los valores de mesa y hora
     cliente = { ...cliente, mesa, hora }
-    console.log( cliente);
+    //console.log( cliente);
     
     //ocultar modal
     //modal formulario
@@ -70,6 +70,9 @@ function guardarCliente() {
 
     //llamar funcion para mostrar secciones
     mostrarSecciones();
+
+    //obtener los platilos de la API JSON SERVER
+    obtenerPlatillos();
 }
 //funcion para mostrar las secciones coultas
 function mostrarSecciones() {
@@ -79,6 +82,17 @@ function mostrarSecciones() {
     //iterarcon foreach
     //y removemos las clases con este codigo seccion.classList.remove('d-none')
     seccionesOcultas.forEach( seccion => seccion.classList.remove('d-none'));
-
-
+}
+//funcion para mostrar los PLATILLOS desde la API
+function obtenerPlatillos() {
+    //url
+    const url = 'http://localhost:4000/platillos';
+    
+    //fetch
+    fetch( url )
+    //se da por implicito el return respuesta.json()
+    .then( respuesta => respuesta.json() )
+        .then( resultado => console.log( resultado ) )
+        //error
+        .catch( error => console.log( error ) )
 }
