@@ -143,6 +143,28 @@ function mostrarPlatillos( platillos ) {
         categoriaPlatillo.textContent = categorias[categoria];
 
 
+        //INPUT CANTIDAD
+        const inputCantidad = document.createElement('INPUT');
+        //TIPO DEL INPUT
+        inputCantidad.type = 'number';
+        //CANTIDAD MINIMA A SELECCIONAR 0, PARA QUE NO SE PUEDA SELECCIONAR -1,-2,-3, ETC...
+        inputCantidad.min = 0;
+        //VALOR POR DEFECTO DEL INPUT
+        inputCantidad.value = 0;
+        //crear el id del platillo
+        inputCantidad.id = `producto-${ id }`;
+        //estilos
+        inputCantidad.classList.add('form-control');
+
+        //crear un div para el input
+        const agregar = document.createElement('DIV');
+        //estilos
+        agregar.classList.add('col-md-2');
+        //agregarle al div el input
+        agregar.appendChild( inputCantidad );
+        
+        
+        console.log( inputCantidad );
 
         //agregar el nombre al row
         row.appendChild( nombrePlatillo );
@@ -150,6 +172,8 @@ function mostrarPlatillos( platillos ) {
         row.appendChild( precioPlatillo );
         //agreagr al row la categori
         row.appendChild( categoriaPlatillo );
+        //agregar al row el div agregar
+        row.appendChild( agregar );
 
 
         //renderizar en el html
