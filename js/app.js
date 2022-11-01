@@ -204,11 +204,34 @@ function agregarPlatillo( producto ) {
     //destructuring del pedido actual
     //se pone let ya que el pedido puede ser modificado N veces
     let { pedido } = cliente;
-
+    //console.log( pedido );
     //revisar que la cantidad sea mayor a 0
     if ( producto.cantidad > 0 ) {
-    //
-    cliente.pedido = [ ...pedido, producto ];
+
+        //verificar si en el arreglo ya existe un producto
+        if ( pedido.some( articulo => articulo.id === producto.id )) {
+            //el articulo ya existe actualizar la cantidad
+            //identificar cual es el producto que se esta repitiend
+            const pedidoActualizado = pedido.map( articulo => {
+                //con un if() identificamos el articulos repetido
+                if ( articulo.id === producto.id ) {
+                    //actualizamos la cantidad
+                    articulo.cantidad = producto.cantidad;
+                }
+                //retornamos el articulo para que lo vaya asignando al arreglo pedidoActualizado
+                //y para que no pierda referencia de los objetos que ya esten en el array
+                return articulo;
+                
+            });
+            //se asigna el nuevo array a cliente.pedido
+            cliente.pedido = [ ...pedidoActualizado ];
+            
+        }else {
+            //el articulo no existe lo agregamos al array de pedido
+            //se va actualizando el arreglo cliente.pedido, con lo que ya tiene el arreglo ...pedido, más lo nuevo que se va agregar= producto
+            cliente.pedido = [ ...pedido, producto ];
+        }    
+    
     }else {
         console.log("no es mayor a cero");
     }
