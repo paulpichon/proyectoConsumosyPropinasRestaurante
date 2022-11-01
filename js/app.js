@@ -158,6 +158,21 @@ function mostrarPlatillos( platillos ) {
         //estilos
         inputCantidad.classList.add('form-control');
 
+
+        //funcion que detecta la cantidad y el platillo que se agrega
+        //no se puede crear un event listener sobre un elento que ha sido creado despues del HTML original
+        //le pasamos como arguemento/parametro el id del platillo
+        inputCantidad.onchange = function() {
+            //detectar la cantidad de determinado platillo
+            //convertimos el string en numero con parseint
+            const cantidad = parseInt( inputCantidad.value );
+            //pasamos el arreglo platillo completo
+            //lo convertimos en objeto, platillo = { platillo }
+            //usamos spread operator para que sea lo que el objeto trar mas la nuevo informacion
+            agregarPlatillo( { ...platillo, cantidad } );
+        };
+
+
         //crear un div para el input
         const agregar = document.createElement('DIV');
         //estilos
@@ -166,7 +181,7 @@ function mostrarPlatillos( platillos ) {
         agregar.appendChild( inputCantidad );
         
         
-        console.log( inputCantidad );
+        //console.log( inputCantidad );
 
         //agregar el nombre al row
         row.appendChild( nombrePlatillo );
@@ -181,7 +196,22 @@ function mostrarPlatillos( platillos ) {
         //renderizar en el html
         contenido.appendChild( row );
 
-
     });
 
+}
+//funcion que detecta la cantidad y el platillo que se agrega
+function agregarPlatillo( producto ) {
+    //destructuring del pedido actual
+    //se pone let ya que el pedido puede ser modificado N veces
+    let { pedido } = cliente;
+
+    //revisar que la cantidad sea mayor a 0
+    if ( producto.cantidad > 0 ) {
+    //
+    cliente.pedido = [ ...pedido, producto ];
+    }else {
+        console.log("no es mayor a cero");
+    }
+
+    console.log( cliente.pedido );
 }
