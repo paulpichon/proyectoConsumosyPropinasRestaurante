@@ -233,7 +233,10 @@ function agregarPlatillo( producto ) {
         }    
     
     }else {
-        console.log("no es mayor a cero");
+        //eliminar elementos cuando la cantidad es 0
+        const resultado = pedido.filter( articulo => articulo.id !== producto.id );
+        //reescribir el cliente.pedido
+        cliente.pedido = [ ...resultado ];
     }
 
     console.log( cliente.pedido );
