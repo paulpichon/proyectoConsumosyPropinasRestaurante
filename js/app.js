@@ -1,4 +1,6 @@
 //variables
+//inicio 28/10/2022
+//avance 31/10/2022
 
 let cliente = {
     mesa: '',
