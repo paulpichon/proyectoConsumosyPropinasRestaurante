@@ -363,11 +363,31 @@ function actualizarResumen() {
         precioValor.textContent = `$${ precio }`;
 
 
+        //subtotal del articulo
+        const subtotalElemento = document.createElement('P');
+        //estilos
+        subtotalElemento.classList.add('fw-bold');
+        //texcontent
+        subtotalElemento.textContent = 'Subtotal: ';
+
+
+        //subtotal  valor del elemento/articulo
+        const subtotalValor = document.createElement('SPAN');
+        //estilos
+        subtotalValor.classList.add('fw-normal');
+        //textcontent
+        //se llama una funcion para que nos haga la operacion
+        subtotalValor.textContent = calcularSubtotal(precio, cantidad);
+        
+
+
         //agregar valores a sus contenedores
         //cantidad de elementos
         cantidadElemento.appendChild( cantidadValor );
         //precio de elementos
         precioElemento.appendChild( precioValor );
+        //subtotal
+        subtotalElemento.appendChild( subtotalValor );
         
 
 
@@ -377,6 +397,8 @@ function actualizarResumen() {
         lista.appendChild( cantidadElemento );
         //precio de elementos
         lista.appendChild( precioElemento );
+        //subtotal
+        lista.appendChild( subtotalElemento );
 
 
         //agregar lista al grupo principal
@@ -408,4 +430,9 @@ function limpiarHTML() {
     while ( contenido.firstChild ) {
         contenido.removeChild( contenido.firstChild );
     }
+}
+
+//funcion para calcular el subtotal 
+function calcularSubtotal(precio, cantidad) {
+    return `$ ${ precio * cantidad } `;
 }
