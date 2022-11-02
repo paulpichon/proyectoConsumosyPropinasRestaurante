@@ -313,7 +313,7 @@ function actualizarResumen() {
     const { pedido } = cliente;
     //recorrer el arreglo
     pedido.forEach( articulo => {
-        console.log( articulo );
+        //console.log( articulo );
         //destructuring
         const { nombre, cantidad, precio, id } = articulo;
 
@@ -381,6 +381,20 @@ function actualizarResumen() {
         
 
 
+        //boton para eliminar un pedido
+        const btnEliminar = document.createElement('BUTTON');
+        //estilos
+        btnEliminar.classList.add('btn', 'btn-danger');
+        //textcontent
+        btnEliminar.textContent = 'Eliminar del pedido';
+
+        //agregar funcion para eliminar pedido
+        btnEliminar.onclick = function () {
+            //llamamos funcion para eliminar producto
+            eliminarProducto( id );
+        }
+
+
         //agregar valores a sus contenedores
         //cantidad de elementos
         cantidadElemento.appendChild( cantidadValor );
@@ -388,7 +402,7 @@ function actualizarResumen() {
         precioElemento.appendChild( precioValor );
         //subtotal
         subtotalElemento.appendChild( subtotalValor );
-        
+       
 
 
         //agregar Elementos al LI
@@ -399,6 +413,9 @@ function actualizarResumen() {
         lista.appendChild( precioElemento );
         //subtotal
         lista.appendChild( subtotalElemento );
+        //boton para eliminar
+        lista.appendChild( btnEliminar );
+    
 
 
         //agregar lista al grupo principal
@@ -435,4 +452,20 @@ function limpiarHTML() {
 //funcion para calcular el subtotal 
 function calcularSubtotal(precio, cantidad) {
     return `$ ${ precio * cantidad } `;
+}
+//funcion para eliminar articulo/producto con el BTN para eliminar
+function eliminarProducto( id ) {
+    //destructuring sobre el arreglo principal de CLIENTE
+    const { pedido } = cliente;
+    //eliminar elementos cuando la cantidad es 0
+    const resultado = pedido.filter( articulo => articulo.id !== id );
+    //reescribir el cliente.pedido
+    cliente.pedido = [ ...resultado ];
+
+    //limpiar el html anterior
+    limpiarHTML();
+
+    //mostrar el resumen
+    //llamamos funcion para actualizar el resumen del pedido del cliente
+    actualizarResumen();
 }
