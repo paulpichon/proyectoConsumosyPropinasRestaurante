@@ -242,9 +242,15 @@ function agregarPlatillo( producto ) {
     //limpiar el html anterior
     limpiarHTML();
 
-    //mostrar el resumen
-    //llamamos funcion para actualizar el resumen del pedido del cliente
-    actualizarResumen();
+    //verificar si cliente.pedido tiene algun producto
+    if ( cliente.pedido.length ) {
+        //mostrar el resumen
+        //llamamos funcion para actualizar el resumen del pedido del cliente
+        actualizarResumen();
+    } else {
+        //si no hay ningun elemento/producto llamamos la funcion 
+        mensajePedidoVacio();
+    }  
 
 }
 
@@ -465,7 +471,39 @@ function eliminarProducto( id ) {
     //limpiar el html anterior
     limpiarHTML();
 
-    //mostrar el resumen
-    //llamamos funcion para actualizar el resumen del pedido del cliente
-    actualizarResumen();
+
+    //verificar si cliente.pedido tiene algun producto
+    if ( cliente.pedido.length ) {
+        //mostrar el resumen
+        //llamamos funcion para actualizar el resumen del pedido del cliente
+        actualizarResumen();
+    } else {
+        //si no hay ningun elemento/producto llamamos la funcion 
+        mensajePedidoVacio();
+    } 
+
+    //El producto se elimino por lo tanto regresamos la cantidad a 0 en el input
+    //creamos una variable
+    const productoEliminado = `#producto-${ id }`;
+    //variable que representa al input eliminado
+    const inputEliminado = document.querySelector( productoEliminado ); 
+    //al ya tener una instancia del elemento podemos ponerle como valor 0
+    inputEliminado.value = 0;
+    
+}
+//funcion para mostrar mensaje de pedido vacio una vez que se eliminan productos/articulos
+function mensajePedidoVacio() {
+    //donde se renderizara el contenido
+    const contenido = document.querySelector('#resumen .contenido');
+
+    //crear el htm
+    const texto = document.createElement('P');
+    //estilos
+    texto.classList.add('text-center');
+    //textcontent
+    texto.textContent = 'Añade los elementos del pedido';
+
+    //renderizar
+    contenido.appendChild( texto );
+
 }
