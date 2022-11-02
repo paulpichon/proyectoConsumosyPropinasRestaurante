@@ -305,6 +305,86 @@ function actualizarResumen() {
     heading.classList.add('my-4', 'text-center');
 
 
+    //iterar sobre el arreglo de pedidos
+    const grupo = document.createElement('UL');
+    //estilos
+    grupo.classList.add('list-group');    
+    //destructuring
+    const { pedido } = cliente;
+    //recorrer el arreglo
+    pedido.forEach( articulo => {
+        console.log( articulo );
+        //destructuring
+        const { nombre, cantidad, precio, id } = articulo;
+
+        //construir el html de los LI
+        const lista = document.createElement('LI');
+        //estilos
+        lista.classList.add('list-group-item');
+
+
+        //nombre/titulo dle platillo
+        const nombreElemento = document.createElement('H4');
+        //estilos
+        nombreElemento.classList.add('my-5');
+        //texcontent
+        nombreElemento.textContent = nombre;
+
+
+        //cantidad del articulo
+        const cantidadElemento = document.createElement('P');
+        //estilos
+        cantidadElemento.classList.add('fw-bold');
+        //texcontent
+        cantidadElemento.textContent = 'Cantidad: ';
+
+
+        //cantidad valor del elemento/articulo
+        const cantidadValor = document.createElement('SPAN');
+        //estilos
+        cantidadValor.classList.add('fw-normal');
+        //textcontent
+        cantidadValor.textContent = cantidad;
+
+
+        //precio del articulo
+        const precioElemento = document.createElement('P');
+        //estilos
+        precioElemento.classList.add('fw-bold');
+        //texcontent
+        precioElemento.textContent = 'Precio: ';
+
+
+        //precio valor del elemento/articulo
+        const precioValor = document.createElement('SPAN');
+        //estilos
+        precioValor.classList.add('fw-normal');
+        //textcontent
+        precioValor.textContent = `$${ precio }`;
+
+
+        //agregar valores a sus contenedores
+        //cantidad de elementos
+        cantidadElemento.appendChild( cantidadValor );
+        //precio de elementos
+        precioElemento.appendChild( precioValor );
+        
+
+
+        //agregar Elementos al LI
+        lista.appendChild( nombreElemento );
+        //cantidad elementos
+        lista.appendChild( cantidadElemento );
+        //precio de elementos
+        lista.appendChild( precioElemento );
+
+
+        //agregar lista al grupo principal
+        grupo.appendChild( lista );
+        
+    });
+
+
     //se agrega la info al div contenedor
     //mesa
     resumen.appendChild( mesa );
@@ -312,6 +392,9 @@ function actualizarResumen() {
     resumen.appendChild( hora );
     //heading
     resumen.appendChild( heading );
+    //grupo
+    resumen.appendChild( grupo );
+
 
     //renderizar
     contenido.appendChild( resumen );
