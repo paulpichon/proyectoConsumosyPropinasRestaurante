@@ -239,5 +239,90 @@ function agregarPlatillo( producto ) {
         cliente.pedido = [ ...resultado ];
     }
 
-    console.log( cliente.pedido );
+    //limpiar el html anterior
+    limpiarHTML();
+
+    //mostrar el resumen
+    //llamamos funcion para actualizar el resumen del pedido del cliente
+    actualizarResumen();
+
+}
+
+//funcion para actualizar el resumen del pedido
+function actualizarResumen() {
+    //variable que representa donde se mostrar el resumen
+    const contenido = document.querySelector('#resumen .contenido');
+
+    //crear el html
+    //div contenedor
+    const resumen = document.createElement('div');
+    //estilos
+    resumen.classList.add('col-md-6', 'card', 'py-5', 'px-3', 'shadow');
+
+
+    //informacion de la mesa
+    //mesa
+    const mesa = document.createElement('P');
+    //textcontent
+    mesa.textContent = 'Mesa: ';
+    //estilos
+    mesa.classList.add('fw-bold');
+
+    //span mesa
+    const mesaSpan = document.createElement('SPAN');
+    //textcontent
+    mesaSpan.textContent = cliente.mesa;
+    //estilos
+    mesaSpan.classList.add('fw-normal');
+
+
+    //informacion de la hora
+    //hora
+    const hora = document.createElement('P');
+    //textcontent
+    hora.textContent = 'Hora: ';
+    //estilos
+    hora.classList.add('fw-bold');
+
+    //span hora
+    const horaSpan = document.createElement('SPAN');
+    //textcontent
+    horaSpan.textContent = cliente.hora;
+    //estilos
+    horaSpan.classList.add('fw-normal');
+
+
+    //integrar a los elementos padre
+    //mesa
+    mesa.appendChild( mesaSpan );
+    //hora
+    hora.appendChild( horaSpan );
+
+
+    //titulo de la seccion
+    const heading = document.createElement('H3');
+    heading.textContent = 'Platillos Consumidos';
+    heading.classList.add('my-4', 'text-center');
+
+
+    //se agrega la info al div contenedor
+    //mesa
+    resumen.appendChild( mesa );
+    //hora
+    resumen.appendChild( hora );
+    //heading
+    resumen.appendChild( heading );
+
+    //renderizar
+    contenido.appendChild( resumen );
+
+}
+//funcion para limpiar el html previo
+function limpiarHTML() {
+    //variable que representa donde se limpiara el html
+    const contenido = document.querySelector('#resumen .contenido');
+
+    while ( contenido.firstChild ) {
+        contenido.removeChild( contenido.firstChild );
+    }
 }
