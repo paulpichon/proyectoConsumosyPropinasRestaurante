@@ -546,6 +546,8 @@ function formularioPropinas() {
     radio10.value = '10';
     //estilos
     radio10.classList.add('form-check-input');
+    //agregar una funcion 
+    radio10.onclick = calcularPropina;
 
     //Label del input
     const radio10Label = document.createElement('LABEL');
@@ -586,6 +588,8 @@ function formularioPropinas() {
     radio25Label.textContent = '25%';
     //estilos
     radio25Label.classList.add('form-check-label');
+    //agregar funcion
+    radio25.onclick = calcularPropina;
 
     //div para el radio
     const radio25Div = document.createElement('DIV');
@@ -619,6 +623,8 @@ function formularioPropinas() {
     radio50Label.textContent = '50%';
     //estilos
     radio50Label.classList.add('form-check-label');
+    //agregar funcion
+    radio50.onclick = calcularPropina;
 
     //div para el radio
     const radio50Div = document.createElement('DIV');
@@ -634,7 +640,7 @@ function formularioPropinas() {
 
 
 
-    
+
     //AGREGAR AL DIV PRINCIPAL
     //agregar el heading al divFormulario
     divFormulario.appendChild( heading );
@@ -655,5 +661,31 @@ function formularioPropinas() {
     //renderizar
     contenido.appendChild( formulario );
 
+}
+//funcion para calcular la propina en base al radio input seleccionado
+function calcularPropina() {
+    //destructuring
+    const { pedido } = cliente;
+    //creamos una variable para el subtotal
+    let subtotal = 0;
 
+    //iteramos el arreglo para calcular el subtotal a pagar
+    pedido.forEach( articulo => {
+        //operacion para sumar el total de todo el pedido
+        subtotal += articulo.cantidad * articulo.precio;
+        
+    });
+    //input seleccionado con la propina del cliente
+    const propinaSeleccionada = document.querySelector('input[name="propina"]:checked').value;
+    
+    //calcular la propina
+    //se usa una regla de 3
+    //se parsea propinaSeleccionada ya que viene como un string
+    const propina = (( subtotal * parseInt( propinaSeleccionada ) ) / 100 );
+    //console.log( propina );
+
+    //calcular el total a pagar
+    const total = subtotal + propina;
+
+    console.log( total );
 }
