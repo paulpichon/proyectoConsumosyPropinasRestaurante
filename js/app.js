@@ -263,7 +263,7 @@ function actualizarResumen() {
     //div contenedor
     const resumen = document.createElement('div');
     //estilos
-    resumen.classList.add('col-md-6', 'card', 'py-5', 'px-3', 'shadow');
+    resumen.classList.add('col-md-6', 'card', 'py-2', 'px-3', 'shadow');
 
 
     //informacion de la mesa
@@ -431,18 +431,24 @@ function actualizarResumen() {
 
 
     //se agrega la info al div contenedor
+    //heading
+    resumen.appendChild( heading );
     //mesa
     resumen.appendChild( mesa );
     //hora
     resumen.appendChild( hora );
-    //heading
-    resumen.appendChild( heading );
     //grupo
     resumen.appendChild( grupo );
 
 
     //renderizar
     contenido.appendChild( resumen );
+
+
+    //mostrar formulario de propinas
+    //llamamos una funcion para el formulario de propinas
+    formularioPropinas();
+
 
 }
 //funcion para limpiar el html previo
@@ -505,5 +511,39 @@ function mensajePedidoVacio() {
 
     //renderizar
     contenido.appendChild( texto );
+
+}
+//funcion para mostrar el formulario de propinas
+function formularioPropinas() {
+    //construir el HTML
+    //variable donde se renderizara
+    const contenido = document.querySelector('#resumen .contenido');
+    //crear elemento DIV
+    const formulario = document.createElement('DIV');
+    //estilos
+    formulario.classList.add('col-md-6', 'formulario');
+
+    //divFormulario
+    const divFormulario = document.createElement('DIV');
+    //estilos
+    divFormulario.classList.add('card', 'py-2', 'px-3', 'shadow');
+
+    //crear elemento para el heading
+    const heading = document.createElement('H3');
+    //estilos
+    heading.classList.add('my-4', 'text-center');
+    //textcontent
+    heading.textContent = 'Propina';
+
+
+
+    //agregar el heading al divFormulario
+    divFormulario.appendChild( heading );
+    //agregar divFormulario
+    formulario.appendChild( divFormulario );
+
+    //renderizar
+    contenido.appendChild( formulario );
+
 
 }
