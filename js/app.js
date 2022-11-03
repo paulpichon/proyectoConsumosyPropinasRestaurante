@@ -535,13 +535,123 @@ function formularioPropinas() {
     //textcontent
     heading.textContent = 'Propina';
 
+    //AÑADIR RADIO BUTTON AL FORMULARIO
+    //radio button de 10%
+    const radio10 = document.createElement('INPUT');
+    //value
+    radio10.type = 'radio';
+    //name
+    radio10.name = 'propina';
+    //value
+    radio10.value = '10';
+    //estilos
+    radio10.classList.add('form-check-input');
+
+    //Label del input
+    const radio10Label = document.createElement('LABEL');
+    //texcontent
+    radio10Label.textContent = '10%';
+    //estilos
+    radio10Label.classList.add('form-check-label');
+
+    //div para el radio
+    const radio10Div = document.createElement('DIV');
+    //estilos al DIV
+    radio10Div.classList.add('form-check');
 
 
+    //añadir el radio y el label a el div radio10Div
+    //radio
+    radio10Div.appendChild( radio10 );
+    //label
+    radio10Div.appendChild( radio10Label );
+
+
+
+    //AÑADIR RADIO BUTTON AL FORMULARIO
+    //radio button de 25%
+    const radio25 = document.createElement('INPUT');
+    //value
+    radio25.type = 'radio';
+    //name
+    radio25.name = 'propina';
+    //value
+    radio25.value = '25';
+    //estilos
+    radio25.classList.add('form-check-input');
+
+    //Label del input
+    const radio25Label = document.createElement('LABEL');
+    //texcontent
+    radio25Label.textContent = '25%';
+    //estilos
+    radio25Label.classList.add('form-check-label');
+
+    //div para el radio
+    const radio25Div = document.createElement('DIV');
+    //estilos al DIV
+    radio25Div.classList.add('form-check');
+
+
+    //añadir el radio y el label a el div radio25Div
+    //radio
+    radio25Div.appendChild( radio25 );
+    //label
+    radio25Div.appendChild( radio25Label );
+
+
+
+    //AÑADIR RADIO BUTTON AL FORMULARIO
+    //radio button de 50%
+    const radio50 = document.createElement('INPUT');
+    //value
+    radio50.type = 'radio';
+    //name
+    radio50.name = 'propina';
+    //value
+    radio50.value = '50';
+    //estilos
+    radio50.classList.add('form-check-input');
+
+    //Label del input
+    const radio50Label = document.createElement('LABEL');
+    //texcontent
+    radio50Label.textContent = '50%';
+    //estilos
+    radio50Label.classList.add('form-check-label');
+
+    //div para el radio
+    const radio50Div = document.createElement('DIV');
+    //estilos al DIV
+    radio50Div.classList.add('form-check');
+
+
+    //añadir el radio y el label a el div radio50Div
+    //radio
+    radio50Div.appendChild( radio50 );
+    //label
+    radio50Div.appendChild( radio50Label );
+
+
+
+    
+    //AGREGAR AL DIV PRINCIPAL
     //agregar el heading al divFormulario
     divFormulario.appendChild( heading );
+    //añadir al divFormulario
+    //radio 10%   
+    divFormulario.appendChild( radio10Div );
+    //radio 25%
+    divFormulario.appendChild( radio25Div );
+    //radio 50%
+    divFormulario.appendChild( radio50Div );
+
+
+    //AGREGARLO AL FORMULARIO
     //agregar divFormulario
     formulario.appendChild( divFormulario );
 
+    //AGREGAR AL FORMULARIO
     //renderizar
     contenido.appendChild( formulario );
 
