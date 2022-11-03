@@ -687,5 +687,96 @@ function calcularPropina() {
     //calcular el total a pagar
     const total = subtotal + propina;
 
-    console.log( total );
+    //llamar funcion para mostrar el total de la cuenta en el HTML
+    //se pasan 3 argumentos, subtotal, total y propina
+    mostrarTotalHTML( subtotal, total, propina );
+}
+//funcion para mostrar el total del pedido en el HTML
+function mostrarTotalHTML( subtotal, total, propina ) {
+    //div para añadir los totales
+    const divTotales = document.createElement('DIV');
+    //estilos
+    divTotales.classList.add('total-pagar');
+
+    //creando el HTML
+    //SUBTOTAL
+    const subtotalParrafo = document.createElement('P');
+    //estilos
+    subtotalParrafo.classList.add('fs-4', 'fw-bold', 'mt-2');
+    //textcontent
+    subtotalParrafo.textContent = 'Subtotal Consumo: ';
+
+
+    //span del subtotal
+    const subtotalSpan = document.createElement('SPAN'); 
+    //estilos
+    subtotalSpan.classList.add('fw-normal');
+    //texcontent
+    subtotalSpan.textContent = `$${ subtotal }`;
+    
+    //agregar subtotalSpan a subtotalParrafo
+    subtotalParrafo.appendChild( subtotalSpan );
+
+
+     //PROPINA
+     const propinaParrafo = document.createElement('P');
+     //estilos
+     propinaParrafo.classList.add('fs-4', 'fw-bold', 'mt-2');
+     //textcontent
+     propinaParrafo.textContent = 'Propina: ';
+ 
+ 
+     //span de la propina
+     const propinaSpan = document.createElement('SPAN'); 
+     //estilos
+     propinaSpan.classList.add('fw-normal');
+     //texcontent
+     propinaSpan.textContent = `$${ propina }`;
+     
+     //agregar propinaSpan a propinaParrafo
+     propinaParrafo.appendChild( propinaSpan );
+
+
+     //total
+     const totalParrafo = document.createElement('P');
+     //estilos
+     totalParrafo.classList.add('fs-4', 'fw-bold', 'mt-2');
+     //textcontent
+     totalParrafo.textContent = 'Total del consumo: ';
+ 
+ 
+     //span del total
+     const totalSpan = document.createElement('SPAN'); 
+     //estilos
+     totalSpan.classList.add('fw-normal');
+     //texcontent
+     totalSpan.textContent = `$${ total }`;
+     
+     //agregar totalSpan a totalParrafo
+     totalParrafo.appendChild( totalSpan );
+
+
+    //eliminar el ultimo resultado
+    const totalPagarDiv = document.querySelector('.total-pagar', 'my-5');
+    //verificar si hay un div anterior
+    if (totalPagarDiv) {
+        //si existe, eliminarlo
+        totalPagarDiv.remove();
+    }
+
+
+
+    //añadir subtotalParrafo a divTotales
+    //subtotal
+    divTotales.appendChild( subtotalParrafo );
+    //propina
+    divTotales.appendChild( propinaParrafo );
+    //total
+    divTotales.appendChild( totalParrafo );
+
+    //variable donnde se renderizara 
+    const formulario = document.querySelector('.formulario > div');
+    //renderizar
+    formulario.appendChild( divTotales );
+
 }
